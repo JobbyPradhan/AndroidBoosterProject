@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">AndroidBoosterProject</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
+    <string name="student_form">Welcome Student Register Form</string>
+
+    <string-array name="year">
+        <item>First Year</item>
+        <item>Second Year</item>
+        <item>Third Year</item>
+        <item>Fourth Year</item>
+        <item>Final Year</item>
+    </string-array>
+
+    <string-array name="major">
+        <item>CS</item>
+        <item>CT</item>
+    </string-array>
+</resources>
