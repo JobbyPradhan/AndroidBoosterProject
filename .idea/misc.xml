@@ -5,10 +5,14 @@
       <map>
         <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/drawable/border.xml" value="0.1515" />
         <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1515" />
+        <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1515" />
         <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1515" />
         <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/layout/activity_student.xml" value="0.33" />
+        <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/layout/item_student_ly.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/James/AndroidStudioProjects/AndroidBoosterProject/app/src/main/res/menu/search_menu.xml" value="0.11041666666666666" />
       </map>
     </option>
   </component>

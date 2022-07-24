@@ -1,18 +1,29 @@
 package com.mhs.androidboosterproject.ui.home
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.util.Log
+import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mhs.androidboosterproject.R
+import com.mhs.androidboosterproject.data.entity.Student
 import com.mhs.androidboosterproject.databinding.FragmentHomeBinding
+import com.mhs.androidboosterproject.ui.home.adapter.StudentAdapter
+import com.mhs.androidboosterproject.ui.insertStudent.StudentActivity
+import com.mhs.androidboosterproject.viewModel.StudentViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private lateinit var studentAdapter: StudentAdapter
+    private lateinit var studentList : ArrayList<Student>
 
+    private val viewModel : StudentViewModel by activityViewModels()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -22,21 +33,58 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        setupSearch()
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
+
+    private fun setupSearch() {
+        viewModel.studentSearch.observe(viewLifecycleOwner){
+            Log.i("TASFSAFA", "setupSearch: $it")
+            getStudent(it)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        studentList = arrayListOf()
+        initRec()
+        getStudent("")
+        onClick()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getStudent(s: String) {
+        viewModel.getStudent(s).observe(viewLifecycleOwner){
+            if(it.isNotEmpty()) {
+                studentList = it as ArrayList<Student>
+                studentAdapter.setData(studentList)
+            }
+        }
+    }
+
+    private fun initRec() {
+        studentAdapter = StudentAdapter(studentList)
+        binding.recStudentList.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = studentAdapter
+        }
+    }
+
+    private fun onClick() {
+        binding.btnAdd.setOnClickListener {
+            startActivity(Intent(requireActivity(),StudentActivity::class.java))
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

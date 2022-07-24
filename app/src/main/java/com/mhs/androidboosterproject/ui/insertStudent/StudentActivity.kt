@@ -18,18 +18,73 @@ class StudentActivity : AppCompatActivity() {
     private var mProfileUri:Uri ?=null
     private val viewModel : StudentViewModel by viewModels()
     private lateinit var binding:ActivityStudentBinding
-
+    private var isEdit = false
+    private var id:Int ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        isEdit = intent.getBooleanExtra("Edit",false)
+        if(isEdit){
+            id = intent.getIntExtra("id",0)
+            getStudent(id!!)
+        }
         onClick()
     }
 
+    private fun getStudent(id: Int) {
+        viewModel.getStudentById(id).observe(this){
+                setUpData(it!!)
+        }
+    }
+
+    private fun setUpData(it: Student) {
+        setUpSpinnerYear(it.year)
+        setUpMajor(it.major)
+        setUpGender(it.gender)
+        binding.apply {
+            etName.setText(it.name)
+            etAddress.setText(it.address)
+            etAge.setText(it.age.toString())
+            etPhNo.setText(it.contactNumber)
+            etRollNo.setText(it.rollNo)
+            mProfileUri = Uri.parse(it.img)
+            imgProfile.setImageURI(Uri.parse(it.img))
+        }
+    }
+
+    private fun setUpGender(gender: String) {
+        if(gender == "Male"){
+            binding.rdoMale.isChecked = true
+        }else
+            binding.rdoFemale.isChecked = true
+    }
+
+    private fun setUpMajor(major: String) {
+        if(major == "CS"){
+            binding.spinnerMajor.setSelection(0)
+        }else
+            binding.spinnerMajor.setSelection(1)
+    }
+
+    private fun setUpSpinnerYear(year: String) {
+        when(year){
+            "First Year"->{binding.spinnerYear.setSelection(0)}
+            "Second Year"->{binding.spinnerYear.setSelection(1)}
+            "Third Year"->{binding.spinnerYear.setSelection(2)}
+            "Fourth Year"->{binding.spinnerYear.setSelection(3)}
+            else->{binding.spinnerYear.setSelection(4)}
+        }
+
+    }
+
     private fun onClick() {
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
         binding.btnRegister.setOnClickListener {
-            insertStudent()
+            upsertStudent()
+            finish()
         }
         binding.imgProfile.setOnClickListener {
             ImagePicker.with(this)
@@ -64,7 +119,7 @@ class StudentActivity : AppCompatActivity() {
             }
         }
 
-    private fun insertStudent() {
+    private fun upsertStudent() {
         val name = binding.etName.text.toString().trim()
         val age = binding.etAge.text.toString().trim()
         val year = binding.spinnerYear.selectedItem.toString()
@@ -74,7 +129,7 @@ class StudentActivity : AppCompatActivity() {
         val address = binding.etAddress.text.toString().trim()
         val rollNo = binding.etRollNo.text.toString().trim()
         val student = Student(
-            null,name,rollNo,year,mProfileUri.toString(),major, age.toInt(),gender,phoneNumber,address
+            id,name,rollNo,year,mProfileUri.toString(),major, age.toInt(),gender,phoneNumber,address
         )
         viewModel.insertStudentForm(student)
     }

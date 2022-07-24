@@ -222,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Age"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:nextFocusDown="@id/btn_register" />
             </com.google.android.material.textfield.TextInputLayout>
 
