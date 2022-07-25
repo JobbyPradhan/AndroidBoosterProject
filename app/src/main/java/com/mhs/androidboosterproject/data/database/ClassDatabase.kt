@@ -10,7 +10,7 @@ import com.mhs.androidboosterproject.data.entity.Student
 import com.mhs.androidboosterproject.data.entity.TrainingClass
 
 @Database(
-    entities = [Student::class,TrainingClass::class], version = 1
+    entities = [Student::class,TrainingClass::class], version = 2, exportSchema = false
 )
 abstract class ClassDatabase :RoomDatabase() {
     abstract val studentDao : StudentDao
