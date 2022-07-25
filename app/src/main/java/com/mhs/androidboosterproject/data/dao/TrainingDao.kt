@@ -15,7 +15,7 @@ interface TrainingDao {
         trainingClass: TrainingClass
     )
 
-    @Query("SELECT * FROM TrainingClass   ORDER BY rating,studentCount DESC Limit 3 ")
+    @Query("SELECT * FROM TrainingClass ORDER BY rating DESC Limit 4 ")
     fun getRecommendedTrainingList():LiveData<List<TrainingClass>>
 
     @Query("""
