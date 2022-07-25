@@ -13,6 +13,13 @@
         <item>Final Year</item>
     </string-array>
 
+    <string-array name="course">
+        <item>Android Course</item>
+        <item>React Course</item>
+        <item>IOS Course</item>
+        <item>C# dotNet Course</item>
+    </string-array>
+
     <string-array name="major">
         <item>CS</item>
         <item>CT</item>

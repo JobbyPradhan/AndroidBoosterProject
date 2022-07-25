@@ -11,14 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBoosterProject">
         <activity
-            android:name=".ui.insertStudent.StudentActivity"
+            android:name=".ui.insertData.StudentActivity"
             android:exported="true"
             android:theme="@style/NoActionBar">
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".ui.insertData.CourseActivity"
+            android:exported="false"
+            android:theme="@style/NoActionBar">
         </activity>
         <activity
             android:name=".MainActivity"

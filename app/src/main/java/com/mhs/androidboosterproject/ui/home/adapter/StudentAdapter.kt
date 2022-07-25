@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mhs.androidboosterproject.data.entity.Student
 import com.mhs.androidboosterproject.databinding.ItemStudentLyBinding
-import com.mhs.androidboosterproject.ui.insertStudent.StudentActivity
+import com.mhs.androidboosterproject.ui.insertData.StudentActivity
 
 class StudentAdapter(
     private var studentList : ArrayList<Student>

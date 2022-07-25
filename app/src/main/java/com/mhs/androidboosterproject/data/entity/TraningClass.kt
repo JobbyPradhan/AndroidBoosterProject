@@ -8,8 +8,11 @@ data class TrainingClass(
     @PrimaryKey (autoGenerate = true)
     val id :Int ?= null,
     val name:String,
+    val url:String,
+    val phoneNumber:String,
     val address:String,
-    val rating :Int,
+    val rating :Float,
+    val course:String,
     val description :String,
     val tutorName :String,
     val studentCount :Int

@@ -1,4 +1,4 @@
-package com.mhs.androidboosterproject.ui.insertStudent
+package com.mhs.androidboosterproject.ui.insertData
 
 import android.app.Activity
 import android.net.Uri
